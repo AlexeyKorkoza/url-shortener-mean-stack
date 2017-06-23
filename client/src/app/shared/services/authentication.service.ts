@@ -41,7 +41,7 @@ export class AuthenticationService {
         .map((res) => {
           let data = res.json();
           this.setAuth(data.user);
-          return data.user;
+          return data;
         })
   }
 

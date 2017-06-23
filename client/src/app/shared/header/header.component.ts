@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthenticationService } from "../services/authentication.service";
 import { User } from "../models/user.model";
@@ -12,7 +13,9 @@ export class HeaderComponent implements OnInit {
 
   currentUser: User;
 
-  constructor(private authenticationService: AuthenticationService) { }
+  constructor(
+      private authenticationService: AuthenticationService,
+      private router: Router) {}
 
   ngOnInit() {
     this.authenticationService.currentUser.subscribe(
@@ -24,5 +27,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
+    this.router.navigate(['/login']);
   }
 }

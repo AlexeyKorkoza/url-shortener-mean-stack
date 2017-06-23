@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
 
 import { User } from "../shared/models/user.model";
+import { AuthenticationService } from "../shared/services/authentication.service";
 
 @Component({
   selector: 'app-login',
@@ -11,17 +13,28 @@ import { User } from "../shared/models/user.model";
 export class LoginComponent {
 
   loginForm: any;
+  message: string;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+      private formBuilder: FormBuilder,
+      private router: Router,
+      private authenticationService: AuthenticationService) {
       this.loginForm = formBuilder.group({
-      'username': ['', [<any>Validators.required]],
-      'email': ['', [<any>Validators.required, <any>Validators.email]],
-      'password': ['', [<any>Validators.required, <any>Validators.minLength(6)]]
+      'email': ['', [<any>Validators.required]],
+      'password': ['', [<any>Validators.required]]
     })
   }
 
   login(user: User) {
-
+      this.message = "";
+      this.authenticationService.login(user).subscribe(
+          () => {
+              this.router.navigateByUrl('/');
+          },
+          err => {
+              this.message = err._body;
+          }
+      )
   }
 
 }
