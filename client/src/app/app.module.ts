@@ -10,18 +10,21 @@ import { HomeComponent } from './home/home.component';
 
 import { AppConfig } from './shared/app.config';
 
-import { UserService } from './shared/services/user.service'
+import { UserService } from './shared/services/user.service';
+import { LoginComponent } from './login/login.component'
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
