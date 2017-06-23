@@ -11,7 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { AppConfig } from './shared/app.config';
 
 import { UserService } from './shared/services/user.service';
-import { LoginComponent } from './login/login.component'
+import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './shared/header/header.component'
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     AppComponent,
     RegisterComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
