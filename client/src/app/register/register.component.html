@@ -38,5 +38,6 @@
             <button class="btn btn-success" [disabled]="!registerForm.valid" (click)="register(registerForm.value)">Register</button>
             <a class="btn btn-danger" [routerLink]="['/']">Back</a>
         </div>
+        <p>{{errorMessage}}</p>
     </form>
 </div>

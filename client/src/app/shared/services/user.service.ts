@@ -14,7 +14,8 @@ export class UserService {
       private appConfig: AppConfig) {}
 
   create(user: User) {
-    return this.http.post(this.appConfig.urlServer + "/user/create", user)
+    return this.http.post(this.appConfig.urlServer + "/auth/signup", user)
         .map((res: Response) => res.json())
   }
+
 }

@@ -13,6 +13,7 @@ import { User } from '../shared/models/user.model';
 export class RegisterComponent {
 
     registerForm: any;
+    errorMessage: string;
 
     constructor(
         private userService: UserService,
@@ -27,9 +28,13 @@ export class RegisterComponent {
 
     register(user: User) {
         this.userService.create(user).subscribe(
-            data => {
-                console.log(data);
+            () => {
                 this.router.navigateByUrl('/');
+            },
+            err => {
+                if (err.status == 409) {
+                    this.errorMessage = 'This User is already taken';
+                }
             }
         );
     }
