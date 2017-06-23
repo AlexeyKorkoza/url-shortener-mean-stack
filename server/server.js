@@ -5,6 +5,7 @@ var config = require("./config");
 var mongoose = require("mongoose");
 var morgan = require("morgan");
 var passport = require("passport");
+var flash = require("connect-flash");
 var app = express();
 
 var port = process.env.PORT || config.get('port');
@@ -21,6 +22,11 @@ app.use(morgan('dev'));
 app.use(cors());
 
 app.use(passport.initialize());
+app.use(passport.session());
+app.use(require('express-session')({
+  secret: "keyboard cat"
+}));
+app.use(flash());
 
 require("./passport/passport")(passport);
 

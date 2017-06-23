@@ -6,7 +6,7 @@ var router = express();
 
 router.post('/signup', function(req, res, next) {
 
-  passport.authenticate('local-signup', { failureFlash: true }, function (err) {
+  passport.authenticate('local-signup', function (err) {
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
         return res.status(409).json({
@@ -22,6 +22,27 @@ router.post('/signup', function(req, res, next) {
     return res.status(204).end();
   })(req, res, next);
 
+});
+
+router.post("/login", function(req, res, next) {
+
+  passport.authenticate("local-login", { failureFlash: true }, function(err, userData ) {
+    if (err) {
+      if (err.name === 'Incorrect Credentials Error') {
+        return res.status(400).json({
+          errorMessage: err.name
+        });
+      }
+    }
+
+    if (userData) {
+      return res.status(200).json({
+        user: userData
+      })
+    } else {
+      return res.status(401).json(req.flash('loginMessage')[0])
+    }
+  })(req, res, next);
 });
 
 module.exports = router;
