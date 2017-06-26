@@ -9,19 +9,22 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { CreateUrlComponent } from './url/create-url.component'
 
 import { AppConfig } from './shared/app.config';
 
 import { UserService } from './shared/services/user.service';
 import { AuthenticationService } from "./shared/services/authentication.service";
 import { JwtService } from "./shared/services/jwt.service";
+import { UrlService } from "./shared/services/url.service";
 
-import { ShowAuthedDirective } from './shared/directive/auth.directive'
+import { ShowAuthedDirective } from './shared/directive/auth.directive';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'create', component: CreateUrlComponent }
 ];
 
 @NgModule({
@@ -31,7 +34,8 @@ const appRoutes: Routes = [
     HomeComponent,
     LoginComponent,
     HeaderComponent,
-    ShowAuthedDirective
+    ShowAuthedDirective,
+    CreateUrlComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,7 @@ const appRoutes: Routes = [
     UserService,
     AuthenticationService,
     JwtService,
+    UrlService,
     AppConfig
   ],
   bootstrap: [AppComponent]

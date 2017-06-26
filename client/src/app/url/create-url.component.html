@@ -1,0 +1,49 @@
+<div class="container">
+    <h1>Create url-shortener</h1>
+    <form [formGroup]="createUrlForm">
+        <div class="form-group"
+             [ngClass]="{'has-error':!createUrlForm.controls['full_url'].valid && createUrlForm.controls['full_url'].touched}">
+            <label><b>Full url</b></label>
+            <input type="text" class="form-control"
+                   [formControl]="createUrlForm.controls['full_url']"
+                   placeholder="Paste a link to shorten it">
+            <div
+                *ngIf="createUrlForm.controls['full_url'].hasError('required') && createUrlForm.controls['full_url'].touched"
+                class="alert alert-danger">Input url.
+            </div>
+            <div
+                *ngIf="createUrlForm.controls['full_url'].hasError('pattern') && createUrlForm.controls['full_url'].touched"
+                class="alert alert-danger">Incorrect url.
+            </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'has-error':!createUrlForm.controls['list_tags'].valid && createUrlForm.controls['list_tags'].touched}">
+            <label><b>Input tags</b></label>
+            <input type="text" class="form-control" [formControl]="createUrlForm.controls['list_tags']"
+                   placeholder="Sport, football,">
+            <div *ngIf="createUrlForm.controls['list_tags'].hasError('required') && createUrlForm.controls['list_tags'].touched"
+                 class="alert alert-danger">Input tag.
+            </div>
+            <div
+                *ngIf="createUrlForm.controls['list_tags'].hasError('pattern') && createUrlForm.controls['list_tags'].touched"
+                class="alert alert-danger">Incorrect tags.
+            </div>
+        </div>
+        <div class="form-group"
+             [ngClass]="{'has-error':!createUrlForm.controls['description'].valid && createUrlForm.controls['description'].touched}">
+            <label><b>Short description</b></label>
+            <textarea class="form-control" [formControl]="createUrlForm.controls['description']"
+                      placeholder="Description"></textarea>
+            <div
+                *ngIf="createUrlForm.controls['description'].hasError('required') && createUrlForm.controls['description'].touched"
+                class="alert alert-danger">Input description.
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" (click)="create(createUrlForm.value)"
+                    [disabled]="!createUrlForm.valid">Shorten
+            </button>
+            <a class="btn btn-danger" [routerLink]="['/']">Back</a>
+        </div>
+    </form>
+</div>
