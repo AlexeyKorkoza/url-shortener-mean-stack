@@ -18,7 +18,7 @@ export class CreateUrlComponent {
       private urlService: UrlService) {
       this.createUrlForm = formBuilder.group({
       "full_url": ['', [Validators.required, Validators.pattern('https?://.+')]],
-      "tag": ['', [Validators.required]],
+      "list_tags": ['', [Validators.required, Validators.pattern('([a-zA-Z]{1,},){1,}')]],
       "description": ['', [Validators.required]]
     })
   }

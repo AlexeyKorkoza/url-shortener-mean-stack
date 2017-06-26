@@ -5,8 +5,7 @@ var UrlSchema = new Schema({
   author: String,
   description: String,
   list_tags: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Tag'
+    "name": String
   }],
   count_click: {
     type: Number,
