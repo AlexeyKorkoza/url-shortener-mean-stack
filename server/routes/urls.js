@@ -47,12 +47,10 @@ function createShortUrl(req, res) {
 
     url.save(function (err, url) {
 
-      console.log(url);
-
       if (err) {
         res.status(500).json(err)
       } else {
-        res.status(200);
+        res.status(200).json("Shortener url is created!");
       }
 
     });
