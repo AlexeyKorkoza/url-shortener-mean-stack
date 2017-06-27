@@ -21,4 +21,12 @@ export class UrlService {
         .map((res: Response) => res.json());
   }
 
+  getUrls() {
+    let headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/urls', { headers: headers })
+        .map((res: Response) => res.json());
+  }
+
 }
