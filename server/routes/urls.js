@@ -6,9 +6,31 @@ var Url = require('../models/url');
 var config = require('../config');
 var router = express();
 
+router.get('', getUrls);
 router.post('/create', token.required, createShortUrl);
 
 module.exports = router;
+
+function getUrls(req, res) {
+
+  Url.find({}, function (err, urls) {
+
+    if (err) {
+      res.status(500).json(err);
+    }
+
+    if (urls.length > 0) {
+      res.status(200).json({
+        urls: urls
+      })
+    }
+
+    if (urls.length ===0 ) {
+      res.status(500);
+    }
+
+  });
+}
 
 function createShortUrl(req, res) {
 

@@ -1,1 +1,23 @@
-<h1>Home</h1>
+<div class="container">
+
+    <div *ngFor="let url of urls; let index = index">
+        <div class="url">
+            <p>Shortener-url: <a [href]=url.short_url>{{url.short_url}}</a></p>
+            <div class="description">
+                <h3>Little description:</h3>
+                <p>{{url.description}}</p>
+            </div>
+            <div class="user">
+                 <p>Created by: <a>{{url.author}}</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div [hidden]="urlsLoaded">
+        <p>Loading urls...</p>
+    </div>
+
+    <div [hidden]="!urlsLoaded || urls.length">
+        <p>No urls are here... yet.</p>
+    </div>
+</div>
