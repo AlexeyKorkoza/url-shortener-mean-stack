@@ -7,6 +7,7 @@ var config = require('../config');
 var router = express();
 
 router.get('', getUrls);
+router.get('/stats', token.required, getStatsByUsername);
 router.post('/create', token.required, createShortUrl);
 
 module.exports = router;
@@ -30,6 +31,34 @@ function getUrls(req, res) {
     }
 
   });
+}
+
+function getStatsByUsername(req, res) {
+
+  Url.find({"author": req.payload.username}, function (err, urls) {
+
+    if (err) {
+      res.status(500).json(err);
+    }
+
+    if (urls.length > 0) {
+      var urlsCount = _.reduce(urls, function (current, item) {
+        if (item.count_click) {
+          current+=item.count_click;
+        }
+        return current;
+      }, 0);
+
+      res.status(200).json({
+        urls: urls,
+        urlsCount: urlsCount
+      })
+    }
+
+    if (urls.length === 0) {
+      res.status(500).json("Urls didn't find");
+    }
+  })
 }
 
 function createShortUrl(req, res) {
