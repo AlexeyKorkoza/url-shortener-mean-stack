@@ -29,4 +29,12 @@ export class UrlService {
         .map((res: Response) => res.json());
   }
 
+  getStatsByUsername() {
+    let headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.get(this.appConfig.urlServer + '/urls/stats', { headers: headers })
+        .map((res: Response) => res.json());
+  }
+
 }
