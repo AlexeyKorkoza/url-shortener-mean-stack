@@ -2,7 +2,7 @@
 
     <div *ngFor="let url of urls; let index = index">
         <div class="url">
-            <p>Shortener-url: <a [href]=url.short_url>{{url.short_url}}</a></p>
+            <p>Shortener-url: <a (click)="updateCountClick(url._id, url.count_click, url.short_url)">{{url.short_url}}</a></p>
             <div class="description">
                 <h3>Little description:</h3>
                 <p>{{url.description}}</p>

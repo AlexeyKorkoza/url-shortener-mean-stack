@@ -37,4 +37,13 @@ export class UrlService {
         .map((res: Response) => res.json());
   }
 
+  updateCountClick(id: number, count_click: number) {
+    console.log(count_click);
+    let headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.put(this.appConfig.urlServer + '/urls/count/'+ id, {count_click: count_click }, { headers: headers })
+        .map((res: Response) => res.json());
+  }
+
 }
