@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { CreateUrlComponent } from './url/create-url.component'
+import { InfoUrlComponent } from './url/info-url.component';
 
 import { AppConfig } from './shared/app.config';
 
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateUrlComponent },
-  { path: 'stats', component: StatsComponent }
+  { path: 'stats', component: StatsComponent },
+  { path: 'url/:id', component: InfoUrlComponent }
 ];
 
 @NgModule({
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     HeaderComponent,
     ShowAuthedDirective,
     CreateUrlComponent,
-    StatsComponent
+    StatsComponent,
+    InfoUrlComponent
   ],
   imports: [
     BrowserModule,
