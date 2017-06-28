@@ -8,6 +8,7 @@ var router = express();
 
 router.get('', getUrls);
 router.get('/stats', token.required, getStatsByUsername);
+router.get('/:id', token.required, getUrlById);
 router.post('/create', token.required, createShortUrl);
 router.put('/count/:id', token.required, updateCountClick);
 
@@ -58,6 +59,29 @@ function getStatsByUsername(req, res) {
 
     if (urls.length === 0) {
       res.status(500).json("Urls didn't find");
+    }
+  })
+}
+
+function getUrlById(req, res) {
+
+  Url.findOne({_id: req.params.id} , function (err, url) {
+
+    if (err) {
+      res.status(500).json(err);
+    }
+
+    if (url) {
+
+      var flag = false;
+      if (req.payload.username === url.author) {
+        flag = true;
+      }
+
+      res.status(200).json({
+        url: url,
+        edit: flag
+      })
     }
   })
 }

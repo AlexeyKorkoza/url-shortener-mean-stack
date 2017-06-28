@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Url } from '../shared/models/url.model';
+import { UrlService } from '../shared/services/url.service';
 
 @Component({
   selector: 'app-info-url',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InfoUrlComponent implements OnInit {
 
-  constructor() { }
+  url: Url;
+  edit: boolean = false;
+
+  constructor(
+      private urlService: UrlService,
+      private route: ActivatedRoute) {}
 
   ngOnInit() {
+    let id = this.route.snapshot.params['id'];
+    this.urlService.getUrlById(id).subscribe(
+        data => {
+          this.url = data.url;
+          this.edit = data.edit;
+        }
+    )
   }
 
 }

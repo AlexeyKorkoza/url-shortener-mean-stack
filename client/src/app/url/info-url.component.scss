@@ -1,0 +1,48 @@
+p {
+  font: 18pt 'Source Sans Pro', sans-serif;
+}
+
+.url {
+  margin: 20px 0;
+  padding: 20px;
+  border: 2px solid #66ff66;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+
+  a {
+    cursor: pointer;
+  }
+
+  .description {
+    h3 {
+      font: 16pt 'Source Sans Pro', sans-serif;
+    }
+
+    p {
+      font: 14pt 'Source Sans Pro', sans-serif;
+    }
+  }
+
+  .tags {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 20px 0;
+
+    a {
+      padding: 10px;
+      border-radius: 100%;
+      color: white;
+      background: #00cc00;
+      margin-right: 5px;
+      font: 15pt 'Source Sans Pro';
+      cursor: pointer;
+      &:hover {
+        text-decoration: none;
+      }
+
+    }
+  }
+
+}
