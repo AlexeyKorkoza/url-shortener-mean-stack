@@ -54,4 +54,12 @@ export class UrlService {
         .map((res: Response) => res.json());
   }
 
+  updateUrlById(id: string, url: Url) {
+    let headers = new Headers();
+    headers.append('Authorization', 'Token ' + this.jwtService.getToken());
+
+    return this.http.put(this.appConfig.urlServer + '/urls/' + id, url, { headers: headers })
+        .map((res: Response) => res.json());
+  }
+
 }

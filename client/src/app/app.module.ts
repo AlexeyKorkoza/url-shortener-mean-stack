@@ -21,6 +21,7 @@ import { UrlService } from "./shared/services/url.service";
 
 import { ShowAuthedDirective } from './shared/directive/auth.directive';
 import { StatsComponent } from './stats/stats.component';
+import { EditInfoUrlComponent } from './url/edit-info-url.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,7 +29,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'create', component: CreateUrlComponent },
   { path: 'stats', component: StatsComponent },
-  { path: 'url/:id', component: InfoUrlComponent }
+  { path: 'url/:id', component: InfoUrlComponent},
+  { path: 'url/:id/edit', component: EditInfoUrlComponent }
 ];
 
 @NgModule({
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     ShowAuthedDirective,
     CreateUrlComponent,
     StatsComponent,
-    InfoUrlComponent
+    InfoUrlComponent,
+    EditInfoUrlComponent
   ],
   imports: [
     BrowserModule,
