@@ -11,6 +11,7 @@ router.get('/stats', token.required, getStatsByUsername);
 router.get('/:id', token.required, getUrlById);
 router.post('/create', token.required, createShortUrl);
 router.put('/count/:id', token.required, updateCountClick);
+router.put('/:id', token.required, updateUrlById);
 
 module.exports = router;
 
@@ -110,15 +111,9 @@ function createShortUrl(req, res) {
       "description": req.body.description,
       "full_url": req.body.full_url,
       "short_url": shortUrl,
-      "list_tags": [],
+      "list_tags": tags,
       "date": date,
       "time": time
-    });
-
-    _.forEach(tags, function (value, i) {
-      url.list_tags[i] = {
-        "name": value
-      };
     });
 
     url.save(function (err, url) {
@@ -150,6 +145,26 @@ function updateCountClick(req, res) {
     }
 
   })
+}
+
+function updateUrlById(req, res) {
+
+  _.trim(req.body.list_tags);
+  var tags = _.split(req.body.list_tags, ',');
+  tags.splice(tags.length - 1, 1);
+
+  Url.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, list_tags: tags}}, {new: true}, function (err, url) {
+
+    if (err) {
+      res.status(500).json(err);
+    }
+
+    if (url) {
+      res.status(200);
+    }
+
+  });
+
 }
 
 function returnDate() {

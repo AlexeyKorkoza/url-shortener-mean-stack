@@ -9,7 +9,7 @@
             </div>
             <div class="tags">
                 <div *ngFor="let tag of url?.list_tags">
-                    <a>{{tag.name}}</a>
+                    <a>{{tag}}</a>
                 </div>
             </div>
             <div class="count">
@@ -23,7 +23,7 @@
                 <p>Created by: <a>{{url.author}}</a></p>
             </div>
             <div *ngIf="edit">
-                <button class="btn btn-success">Edit info</button>
+                <button [routerLink]="['edit']" class="btn btn-success">Edit info</button>
             </div>
         </div>
     </div>
