@@ -1,0 +1,16 @@
+<div *ngIf="urls">
+    <div class="searched_urls">
+        <h1>Searched urls by tag: <span>{{filter_tag}}</span></h1>
+        <div *ngFor="let url of urls">
+            <p class="author">Author of url: {{url.author}}</p>
+            <p>Short url: {{url.short_url}}</p>
+            <div *ngFor="let tag of url?.list_tags">
+                <div class="tags">
+                    <div *ngIf="tag==filter_tag">
+                        <a>{{tag}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

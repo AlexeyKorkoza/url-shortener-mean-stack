@@ -4,7 +4,10 @@ var Schema = mongoose.Schema;
 var UrlSchema = new Schema({
   author: String,
   description: String,
-  list_tags: [{ type: String }],
+  list_tags: [{
+    type: String,
+    unique: false
+  }],
   count_click: {
     type: Number,
     default: 0

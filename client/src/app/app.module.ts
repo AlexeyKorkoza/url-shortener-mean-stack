@@ -22,6 +22,7 @@ import { UrlService } from "./shared/services/url.service";
 import { ShowAuthedDirective } from './shared/directive/auth.directive';
 import { StatsComponent } from './stats/stats.component';
 import { EditInfoUrlComponent } from './url/edit-info-url.component';
+import { UrlsByTagComponent } from './url/urls-by-tag.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     CreateUrlComponent,
     StatsComponent,
     InfoUrlComponent,
-    EditInfoUrlComponent
+    EditInfoUrlComponent,
+    UrlsByTagComponent
   ],
   imports: [
     BrowserModule,
