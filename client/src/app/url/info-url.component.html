@@ -9,7 +9,7 @@
             </div>
             <div class="tags">
                 <div *ngFor="let tag of url?.list_tags">
-                    <a>{{tag}}</a>
+                    <a (click)="nameOfTag(tag)">{{tag}}</a>
                 </div>
             </div>
             <div class="count">
@@ -27,4 +27,5 @@
             </div>
         </div>
     </div>
+    <app-urls-by-tag [filter_tag]="filter_tag"></app-urls-by-tag>
 </div>

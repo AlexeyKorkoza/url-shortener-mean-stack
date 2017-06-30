@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Url } from '../shared/models/url.model';
@@ -13,6 +13,7 @@ export class InfoUrlComponent implements OnInit {
 
   url: Url;
   edit: boolean = false;
+  filter_tag: string;
 
   constructor(
       private urlService: UrlService,
@@ -26,6 +27,10 @@ export class InfoUrlComponent implements OnInit {
           this.edit = data.edit;
         }
     )
+  }
+
+  nameOfTag(tag: string) {
+      this.filter_tag = tag;
   }
 
 }
