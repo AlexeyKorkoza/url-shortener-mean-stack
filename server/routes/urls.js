@@ -9,6 +9,7 @@ var router = express();
 router.get('', getUrls);
 router.get('/stats', token.required, getStatsByUsername);
 router.get('/:id', token.required, getUrlById);
+router.get('/quest/:id', getUrlByIdForGuest);
 router.post('/create', token.required, createShortUrl);
 router.put('/count/:id', token.required, updateCountClick);
 router.put('/:id', token.required, updateUrlById);
@@ -66,7 +67,7 @@ function getStatsByUsername(req, res) {
 
 function getUrlById(req, res) {
 
-    Url.findOne({_id: req.params.id} , function (err, url) {
+    Url.findOne({_id: req.params.id}, function (err, url) {
 
         if (err) {
             res.status(500).json(err);
@@ -82,6 +83,22 @@ function getUrlById(req, res) {
             res.status(200).json({
                 url: url,
                 edit: flag
+            });
+        }
+    });
+}
+
+function getUrlByIdForGuest(req, res) {
+    Url.findOne({_id: req.params.id}, function (err, url) {
+
+        if (err) {
+            res.status(500).json(err);
+        }
+
+        if (url) {
+
+            res.status(200).json({
+                url: url
             });
         }
     });
