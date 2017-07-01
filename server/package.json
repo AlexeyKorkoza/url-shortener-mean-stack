@@ -4,13 +4,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-start": "nodemon server.js"
+    "dev-start": "nodemon server.js",
+    "eslint": "eslint .",
+    "fix": "eslint . --fix",
+    "precommit": "concurrently \"npm run eslint\""
   },
   "author": "Alexey Korkoza",
   "license": "MIT",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
+    "concurrently": "^3.5.0",
     "connect-flash": "^0.1.1",
     "cors": "^2.8.3",
     "express": "^4.15.3",
@@ -26,5 +30,8 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^4.1.1"
   }
 }
