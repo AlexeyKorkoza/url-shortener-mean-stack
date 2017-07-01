@@ -62,4 +62,10 @@ export class UrlService {
         .map((res: Response) => res.json());
   }
 
+  getUrlByIdForGuest(id: string) {
+
+    return this.http.get(this.appConfig.urlServer + '/urls/quest/' + id)
+        .map((res: Response) => res.json());
+  }
+
 }
