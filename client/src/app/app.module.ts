@@ -23,15 +23,16 @@ import { ShowAuthedDirective } from './shared/directive/auth.directive';
 import { StatsComponent } from './stats/stats.component';
 import { EditInfoUrlComponent } from './url/edit-info-url.component';
 import { UrlsByTagComponent } from './url/urls-by-tag.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'create', component: CreateUrlComponent },
-  { path: 'stats', component: StatsComponent },
+  { path: 'create', component: CreateUrlComponent, canActivate: [AuthGuard] },
+  { path: 'stats', component: StatsComponent, canActivate: [AuthGuard] },
   { path: 'url/:id', component: InfoUrlComponent},
-  { path: 'url/:id/edit', component: EditInfoUrlComponent }
+  { path: 'url/:id/edit', component: EditInfoUrlComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -60,7 +61,8 @@ const appRoutes: Routes = [
     AuthenticationService,
     JwtService,
     UrlService,
-    AppConfig
+    AppConfig,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
