@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Url } from "../shared/models/url.model";
-import { UrlService } from "../shared/services/url.service";
+import { Url } from '../shared/models/url.model';
+import { UrlService } from '../shared/services/url.service';
 
 @Component({
   selector: 'app-create-url',
@@ -20,9 +20,9 @@ export class CreateUrlComponent {
       private router: Router,
       private urlService: UrlService) {
       this.createUrlForm = formBuilder.group({
-      "full_url": ['', [Validators.required, Validators.pattern('https?://.+')]],
-      "list_tags": ['', [Validators.required, Validators.pattern('([a-zA-Z]{1,},){1,}')]],
-      "description": ['', [Validators.required]]
+      'full_url': ['', [Validators.required, Validators.pattern('https?://.+')]],
+      'list_tags': ['', [Validators.required, Validators.pattern('([a-zA-Z]{1,},){1,}')]],
+      'description': ['', [Validators.required]]
     })
   }
 

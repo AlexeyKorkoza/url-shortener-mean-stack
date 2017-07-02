@@ -6,8 +6,8 @@ import 'rxjs/add/operator/catch';
 
 import { AppConfig } from '../app.config';
 import { User } from '../models/user.model';
-import { JwtService } from "./jwt.service";
-import { UserService } from "../services/user.service";
+import { JwtService } from './jwt.service';
+import { UserService } from '../services/user.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -46,9 +46,9 @@ export class AuthenticationService {
   }
 
   login(user: any) {
-    return this.http.post(this.appConfig.urlServer + "/auth/login", user)
+    return this.http.post(this.appConfig.urlServer + '/auth/login', user)
         .map((res) => {
-          let data = res.json();
+          const data = res.json();
           this.setAuth(data.user);
           return data;
         })

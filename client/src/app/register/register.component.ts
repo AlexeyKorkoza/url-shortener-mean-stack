@@ -32,7 +32,7 @@ export class RegisterComponent {
                 this.router.navigateByUrl('/');
             },
             err => {
-                if (err.status == 409) {
+                if (err.status === 409) {
                     this.errorMessage = 'This User is already taken';
                 }
             }

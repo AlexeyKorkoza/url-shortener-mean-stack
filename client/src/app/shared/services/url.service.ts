@@ -14,7 +14,7 @@ export class UrlService {
       private jwtService: JwtService) { }
 
   create(url: Url) {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
     return this.http.post(this.appConfig.urlServer + '/urls/create', url, { headers: headers })
@@ -22,7 +22,7 @@ export class UrlService {
   }
 
   getUrls() {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
     return this.http.get(this.appConfig.urlServer + '/urls', { headers: headers })
@@ -30,7 +30,7 @@ export class UrlService {
   }
 
   getStatsByUsername() {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
     return this.http.get(this.appConfig.urlServer + '/urls/stats', { headers: headers })
@@ -39,15 +39,15 @@ export class UrlService {
 
   updateCountClick(id: number, count_click: number) {
     console.log(count_click);
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
-    return this.http.put(this.appConfig.urlServer + '/urls/count/'+ id, {count_click: count_click }, { headers: headers })
+    return this.http.put(this.appConfig.urlServer + '/urls/count/' + id, {count_click: count_click }, { headers: headers })
         .map((res: Response) => res.json());
   }
 
   getUrlById(id: string) {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
     return this.http.get(this.appConfig.urlServer + '/urls/' + id, { headers: headers })
@@ -55,7 +55,7 @@ export class UrlService {
   }
 
   updateUrlById(id: string, url: Url) {
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Authorization', 'Token ' + this.jwtService.getToken());
 
     return this.http.put(this.appConfig.urlServer + '/urls/' + id, url, { headers: headers })

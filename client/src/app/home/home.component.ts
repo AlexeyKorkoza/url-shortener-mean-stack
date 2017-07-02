@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
         this.urlService.getUrls().subscribe(
             data => {
                 this.urls = data.urls;
-                console.log(this.urls[0].count_click);
                 this.urlsLoaded = true;
             },
             err => {
