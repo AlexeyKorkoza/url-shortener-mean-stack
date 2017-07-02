@@ -1,5 +1,6 @@
 {
   "port": 8000,
   "db": "mongodb://localhost:27017/url-shortener",
-  "jwtSecret": "Anaheim Ducks"
+  "jwtSecret": "Anaheim Ducks",
+  "google_key": "AIzaSyA6NibcmbqiTJ0Nv_Nsu2Hn3RW-8Pkc3bc"
 }

@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Edit info about url-shortener</h1>
+  <form [formGroup]="editUrlForm">
+    <div class="form-group"
+         [ngClass]="{'has-error':!editUrlForm.controls['list_tags'].valid && editUrlForm.controls['list_tags'].touched}">
+      <label><b>Input tags</b></label>
+      <input type="text" class="form-control" (ngModel)="list_tags" [formControl]="editUrlForm.controls['list_tags']"
+             placeholder="Sport, football,">
+      <div *ngIf="editUrlForm.controls['list_tags'].hasError('required') && editUrlForm.controls['list_tags'].touched"
+           class="alert alert-danger">Input tag.
+      </div>
+      <div
+          *ngIf="editUrlForm.controls['list_tags'].hasError('pattern') && editUrlForm.controls['list_tags'].touched"
+          class="alert alert-danger">Incorrect tags.
+      </div>
+    </div>
+    <div class="form-group"
+         [ngClass]="{'has-error':!editUrlForm.controls['description'].valid && editUrlForm.controls['description'].touched}">
+      <label><b>Short description</b></label>
+      <textarea class="form-control" (ngModel)="description" [formControl]="editUrlForm.controls['description']"
+                placeholder="Description"></textarea>
+      <div
+          *ngIf="editUrlForm.controls['description'].hasError('required') && editUrlForm.controls['description'].touched"
+          class="alert alert-danger">Input description.
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-success" (click)="update(editUrlForm.value)"
+              [disabled]="!editUrlForm.valid">Update
+      </button>
+      <a class="btn btn-danger" [routerLink]="['/']">Back</a>
+    </div>
+    <div class="form-group">
+      <p>{{message}}</p>
+    </div>
+  </form>
+</div>

@@ -5,9 +5,9 @@ import { AuthenticationService } from '../app/shared/services/authentication.ser
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   constructor(private authenticationService: AuthenticationService) {}
 

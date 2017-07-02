@@ -1,0 +1,40 @@
+.searched_urls {
+
+  border-top: 1px solid darksalmon;
+
+  span {
+    text-decoration: underline;
+  }
+
+  .author {
+    border-top: 1px solid blueviolet;
+  }
+
+  h1 {
+    font: 18pt 'Source Sans Pro';
+  }
+
+  p {
+    font: 15pt 'Source Sans Pro';
+  }
+
+  .tags {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 20px 0;
+
+    a {
+      padding: 10px;
+      border-radius: 100%;
+      color: white;
+      background: #00cc00;
+      font: 15pt 'Source Sans Pro';
+      cursor: pointer;
+      &:hover {
+        text-decoration: none;
+      }
+
+    }
+  }
+}

@@ -6,7 +6,8 @@ import 'rxjs/add/operator/catch';
 
 import { AppConfig } from '../app.config';
 import { User } from '../models/user.model';
-import { JwtService } from "./jwt.service";
+import { JwtService } from './jwt.service';
+import { UserService } from '../services/user.service';
 
 @Injectable()
 export class AuthenticationService {
@@ -20,11 +21,19 @@ export class AuthenticationService {
   constructor(
       private http: Http,
       private appConfig: AppConfig,
-      private jwtService: JwtService) {}
+      private jwtService: JwtService,
+      private userService: UserService) {}
 
   checkAuth() {
     if (this.jwtService.getToken()) {
-      /* get info about user */
+      this.userService.getUser().subscribe(
+          data => {
+            this.setAuth(data.user);
+          },
+          err => {
+            this.logout();
+          }
+      )
     } else {
       this.logout();
     }
@@ -37,9 +46,9 @@ export class AuthenticationService {
   }
 
   login(user: any) {
-    return this.http.post(this.appConfig.urlServer + "/auth/login", user)
+    return this.http.post(this.appConfig.urlServer + '/auth/login', user)
         .map((res) => {
-          let data = res.json();
+          const data = res.json();
           this.setAuth(data.user);
           return data;
         })

@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { User } from "../shared/models/user.model";
-import { AuthenticationService } from "../shared/services/authentication.service";
+import { User } from '../shared/models/user.model';
+import { AuthenticationService } from '../shared/services/authentication.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['login.component.scss']
 })
 export class LoginComponent {
 
@@ -26,7 +26,7 @@ export class LoginComponent {
   }
 
   login(user: User) {
-      this.message = "";
+      this.message = '';
       this.authenticationService.login(user).subscribe(
           () => {
               this.router.navigateByUrl('/');
