@@ -13,7 +13,7 @@ import { JwtService } from '../shared/services/jwt.service';
 export class InfoUrlComponent implements OnInit {
 
   url: Url;
-  edit: boolean = false;
+  edit: boolean;
   filter_tag: string;
 
   constructor(
@@ -22,7 +22,7 @@ export class InfoUrlComponent implements OnInit {
       private route: ActivatedRoute) {}
 
   ngOnInit() {
-    let id = this.route.snapshot.params['id'];
+    const id = this.route.snapshot.params['id'];
     if (this.jwtService.getToken()) {
         this.urlService.getUrlById(id).subscribe(
             data => {

@@ -12,7 +12,7 @@ export class StatsComponent implements OnInit {
 
   urls: Url [];
   urlLoaded = false;
-  urlsCount: number = 0;
+  urlsCount: number;
   username: String;
 
   constructor(private urlService: UrlService) { }

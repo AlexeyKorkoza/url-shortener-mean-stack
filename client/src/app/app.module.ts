@@ -15,9 +15,9 @@ import { InfoUrlComponent } from './url/info-url.component';
 import { AppConfig } from './shared/app.config';
 
 import { UserService } from './shared/services/user.service';
-import { AuthenticationService } from "./shared/services/authentication.service";
-import { JwtService } from "./shared/services/jwt.service";
-import { UrlService } from "./shared/services/url.service";
+import { AuthenticationService } from './shared/services/authentication.service';
+import { JwtService } from './shared/services/jwt.service';
+import { UrlService } from './shared/services/url.service';
 
 import { ShowAuthedDirective } from './shared/directive/auth.directive';
 import { StatsComponent } from './stats/stats.component';

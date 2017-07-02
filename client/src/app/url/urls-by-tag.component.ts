@@ -16,7 +16,7 @@ export class UrlsByTagComponent implements OnChanges {
   constructor(private urlService: UrlService) { }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['filter_tag'] && this.filter_tag != undefined) {
+    if (changes['filter_tag'] && this.filter_tag !== undefined) {
         this.urlService.getUrls().subscribe(
             data => {
               this.urls = this.filterData(data.urls, this.filter_tag);
@@ -25,15 +25,16 @@ export class UrlsByTagComponent implements OnChanges {
     }
   }
 
-  filterData(obj: any, tag: string) :any {
-    let results: any [] = [];
-    for( var i = 0; i < obj.length; i++){
+  filterData(obj: any, tag: string): any {
+    const results: any [] = [];
+    for ( let i = 0; i < obj.length; i++) {
 
-      for( var j = 0; j < obj[i].list_tags.length; j++)
+      for ( let j = 0; j < obj[i].list_tags.length; j++) {
 
-        if (obj[i].list_tags[j] == tag) {
+        if (obj[i].list_tags[j] === tag) {
           results.push(obj[i]);
         }
+      }
     }
     return results;
   }
