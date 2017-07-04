@@ -20,4 +20,4 @@ Simple service executes change the full url to little url.
 3. Write in command line `npm run test`.
 
 ## Review coverage of unit-tests the Server
-1. If you want to see coverage your write in command line `npm run test-coverage`.
+1. If you want to see coverage you write in command line `npm run test-coverage`.
