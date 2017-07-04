@@ -14,7 +14,6 @@ export class EditInfoUrlComponent implements OnInit {
 
   url: Url;
   editUrlForm: any;
-  list_tags: string;
   id: string;
 
   constructor(
@@ -22,23 +21,25 @@ export class EditInfoUrlComponent implements OnInit {
       private route: ActivatedRoute,
       private formBuilder: FormBuilder) {
       this.editUrlForm = formBuilder.group({
-      'list_tags': ['', [Validators.required, Validators.pattern('([a-zA-Z]{1,},){1,}')]],
-      'description': ['', [Validators.required]]
+      'list_tags': [null, [Validators.required, Validators.pattern('([a-zA-Z]{1,},){1,}')]],
+      'description': [null, [Validators.required]]
     })
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    let list_tags = '';
     this.urlService.getUrlById(this.id).subscribe(
         data => {
           this.url = data.url;
           (<FormControl>this.editUrlForm.controls['description'])
                 .setValue(this.url.description, { onlySelf: true });
           this.url.list_tags.forEach((item) => {
-              this.list_tags += item + ',';
+              list_tags += item + ',';
           });
+
           (<FormControl>this.editUrlForm.controls['list_tags'])
-              .setValue(this.list_tags, { onlySelf: true });
+              .patchValue(list_tags, { onlySelf: true });
         }
     );
   }

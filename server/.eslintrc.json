@@ -24,6 +24,9 @@
     "globals": {
         "require": true,
         "module": true,
-        "__dirname": true
+        "__dirname": true,
+        "it": true,
+        "beforeEach": true,
+        "describe": true
     }
 }

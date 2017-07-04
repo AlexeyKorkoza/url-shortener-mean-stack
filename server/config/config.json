@@ -1,6 +1,8 @@
 {
+  "host": "localhost",
   "port": 8000,
   "db": "mongodb://localhost:27017/url-shortener",
+  "db-test": "mongodb://localhost:27017/url-shortener-testing",
   "jwtSecret": "Anaheim Ducks",
   "google_key": "AIzaSyA6NibcmbqiTJ0Nv_Nsu2Hn3RW-8Pkc3bc"
 }

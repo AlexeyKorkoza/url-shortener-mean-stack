@@ -11,6 +11,13 @@ var app = express();
 var port = config.get('port');
 
 mongoose.connect(config.get('db'));
+var db = mongoose.connection;
+
+db.once('open', function() {
+});
+
+db.on('error', function() {
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -32,3 +39,5 @@ require('./passport/passport')(passport);
 app.use(require('./routes'));
 
 app.listen(port);
+
+module.exports = app;
