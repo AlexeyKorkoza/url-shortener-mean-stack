@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "test": "mocha  test",
+    "test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec",
     "dev-start": "nodemon server.js",
     "eslint": "eslint .",
     "fix": "eslint . --fix",
@@ -32,6 +34,16 @@
     "path": "^0.12.7"
   },
   "devDependencies": {
-    "eslint": "^4.1.1"
+    "chai": "^4.0.2",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.1.1",
+    "http-status": "^1.0.1",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.4.2",
+    "should": "^11.2.1",
+    "sinon": "^2.3.6",
+    "sinon-mongoose": "^2.0.2",
+    "superagent": "^3.5.2",
+    "supertest": "^3.0.0"
   }
 }
