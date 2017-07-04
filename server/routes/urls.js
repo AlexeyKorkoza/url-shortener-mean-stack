@@ -9,7 +9,7 @@ var router = express();
 router.get('', getUrls);
 router.get('/stats', token.required, getStatsByUsername);
 router.get('/:id', token.required, getUrlById);
-router.get('/quest/:id', getUrlByIdForGuest);
+router.get('/guest/:id', getUrlByIdForGuest);
 router.post('/create', token.required, createShortUrl);
 router.put('/count/:id', token.required, updateCountClick);
 router.put('/:id', token.required, updateUrlById);
@@ -133,12 +133,12 @@ function createShortUrl(req, res) {
             'time': time
         });
 
-        url.save(function (err) {
+        url.save(function (err, url) {
 
             if (err) {
-                res.status(500).json(err);
+                return res.status(500).json(err);
             } else {
-                res.status(200).json('Shortener url is created!');
+                return res.status(200).json(url);
             }
 
         });
@@ -151,14 +151,14 @@ function updateCountClick(req, res) {
 
     var count_click = req.body.count_click + 1;
 
-    Url.findOneAndUpdate({_id: req.params.id}, {$set: {count_click: count_click}}, {new: true}, function (err, url) {
+    Url.findOneAndUpdate({_id: req.params.id}, {count_click: count_click}, {new: true}, function (err, url) {
 
         if (err) {
             return res.status(500).json(err);
         }
 
         if (url) {
-            return res.status(200).json('Count of the click is updated');
+            return res.status(200).json(url);
         }
 
     });
@@ -170,14 +170,14 @@ function updateUrlById(req, res) {
     var tags = _.split(req.body.list_tags, ',');
     tags.splice(tags.length - 1, 1);
 
-    Url.findOneAndUpdate({_id: req.params.id}, {$set: {description: req.body.description, list_tags: tags}}, {new: true}, function (err, url) {
+    Url.findOneAndUpdate({_id: req.params.id}, { description: req.body.description, list_tags: tags}, {new: true}, function (err, url) {
 
         if (err) {
             res.status(500).json(err);
         }
 
         if (url) {
-            res.status(200);
+            res.status(200).json(url);
         }
 
     });
